@@ -8,7 +8,16 @@ $db = new PDO("mysql:host=localhost;dbname=gestion_coloc", "root", "");
 
 $authController = new AuthController($db);
 
-$request = $_SERVER['REQUEST_URI'];
+$basePath = '/GestionColocBack/public';
+
+$request = str_replace(
+    $basePath, 
+    '', 
+    parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH)
+    );
+
+    /*echo "REQUEST: " . $request;
+    exit;*/
 $method = $_SERVER['REQUEST_METHOD'];
 
 if ($request === '/api/register' && $method === 'POST') {
@@ -18,3 +27,4 @@ if ($request === '/api/register' && $method === 'POST') {
 if ($request === '/api/login' && $method === 'POST') {
     $authController->login();
 }
+

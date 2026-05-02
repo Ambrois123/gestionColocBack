@@ -19,7 +19,7 @@ class AuthService {
     public function login($email, $password) {
         $user = $this->userRepository->findByEmail($email);
 
-        if (!$user || !password_verify($password, $user['password'])) {
+        if (!$user || !password_verify($password, $user['user_password'])) {
             throw new \Exception("Invalid credentials");
         }
 

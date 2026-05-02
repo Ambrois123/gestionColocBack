@@ -1,0 +1,10 @@
+## REGISTER USER
+##pwd: 12345678
+POST http://localhost/GestionColocBack/public/api/register
+Content-Type: application/json
+
+{
+    "user_name": "Ambroise ADANLEDJI",
+    "user_email": "ambroise@gmail.com",
+    "user_password": "12345678"
+}

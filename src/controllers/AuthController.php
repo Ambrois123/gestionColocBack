@@ -12,22 +12,38 @@ class AuthController {
     }
 
     public function register() {
-        $data = json_decode(file_get_contents("php://input"), true);
+    header('Content-Type: application/json');
 
-        try {
-            $user = $this->authService->register(
-                $data['name'],
-                $data['email'],
-                $data['password']
-            );
+    $data = json_decode(file_get_contents("php://input"), true);
 
-            echo json_encode($user);
-
-        } catch (Exception $e) {
-            http_response_code(400);
-            echo json_encode(["error" => $e->getMessage()]);
+    try {
+        if (
+            empty($data['user_name']) ||
+            empty($data['user_email']) ||
+            empty($data['user_password'])
+        ) {
+            throw new \Exception("Tous les champs sont obligatoires");
         }
+
+        $user = $this->authService->register(
+            $data['user_name'],
+            $data['user_email'],
+            $data['user_password']
+        );
+
+        http_response_code(201);
+        echo json_encode([
+            "message" => "Utilisateur créé avec succès",
+            "user" => $user
+        ]);
+
+    } catch (\Exception $e) {
+        http_response_code(400);
+        echo json_encode([
+            "error" => $e->getMessage()
+        ]);
     }
+}
 
     public function login() {
         $data = json_decode(file_get_contents("php://input"), true);

@@ -50,8 +50,8 @@ class AuthController {
 
         try {
             $result = $this->authService->login(
-                $data['email'],
-                $data['password']
+                $data['user_email'],
+                $data['user_password']
             );
 
             echo json_encode($result);

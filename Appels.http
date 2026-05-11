@@ -17,3 +17,29 @@ Content-Type: application/json
     "user_email": "melody@gmail.com", 
     "user_password": "12345678"
 }
+
+### =========================
+### CREATE TASK — autre exemple
+### =========================
+
+POST http://localhost/GestionColocBack/public/api/tasks
+Content-Type: application/json
+
+{
+  "title": "Faire la vaisselle",
+  "assigned_to": 1,
+  "household_id": 1
+}
+
+### =========================
+### CREATE TASK — créer une tâche
+### =========================
+
+POST http://localhost/GestionColocBack/public/api/tasks
+Content-Type: application/json
+
+{
+  "title": "FAire le ménage",
+  "assigned_to": 1,
+  "household_id": 1
+}
